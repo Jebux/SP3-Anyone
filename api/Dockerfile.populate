@@ -5,3 +5,12 @@ FROM python:3.8.13
 # 2. Install the dependencies
 # 3. Copy the content of the current directory to the image
 # 4. Run the populate_db.py script
+COPY /requirements.txt /src/requirements.txt
+
+WORKDIR /src
+
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+COPY ./ /src/
+
+CMD python /src/populate_db.py
